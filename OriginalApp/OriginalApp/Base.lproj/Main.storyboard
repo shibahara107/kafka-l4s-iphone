@@ -3,41 +3,38 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+        <array key="SF-Pro.ttf">
+            <string>SFPro-Bold</string>
+            <string>SFPro-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Item 2-->
+        <!--Calendar-->
         <scene sceneID="dTY-23-LKT">
             <objects>
                 <viewController id="4x7-9f-JZr" customClass="CalendarViewController" customModule="OriginalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpW-hG-42b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Bbe-UZ-mFQ">
-                                <rect key="frame" x="87" y="594" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="tsZ-Ky-z3f"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="qx3-wl-IxE"/>
-                    <connections>
-                        <outlet property="entryTextView" destination="Bbe-UZ-mFQ" id="kub-4Y-jEW"/>
-                    </connections>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="calendar" catalog="system" id="qx3-wl-IxE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mjC-dT-p61" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="724.63768115942037" y="372.99107142857139"/>
         </scene>
-        <!--Item 1-->
+        <!--Write-->
         <scene sceneID="L3D-3w-3s7">
             <objects>
                 <viewController id="cIM-qw-O5k" customClass="WriteViewController" customModule="OriginalApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,56 +42,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZM-KE-leu">
-                                <rect key="frame" x="60" y="102" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZM-KE-leu">
+                                <rect key="frame" x="20" y="104" width="106.5" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bZM-KE-leu" secondAttribute="height" multiplier="37:20" id="1mH-Bp-sYP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="48"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVs-Wg-1bL">
-                                <rect key="frame" x="150" y="102" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RVs-Wg-1bL">
+                                <rect key="frame" x="20" y="59" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RVs-Wg-1bL" secondAttribute="height" multiplier="187:25" id="tbL-lK-NOt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nvK-ds-Dtn">
-                                <rect key="frame" x="87" y="153" width="240" height="432"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gl-mu-Hxo">
-                                <rect key="frame" x="242" y="102" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRX-Zn-MJ3">
+                                <rect key="frame" x="339" y="161" width="52" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Uk7-DR-1F3"/>
+                                    <constraint firstAttribute="width" constant="52" id="sjw-4E-Tq5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="22"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" name="AccentColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="addModel:" destination="cIM-qw-O5k" eventType="touchUpInside" id="PtI-m5-lcp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gl-mu-Hxo">
+                                <rect key="frame" x="337" y="131" width="57" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8gl-mu-Hxo" secondAttribute="height" multiplier="19:9" id="Jy2-CC-Jai"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R2-EQ-qEq">
-                                <rect key="frame" x="174" y="711" width="66" height="30"/>
+                                <rect key="frame" x="328" y="64" width="66" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete All"/>
                                 <connections>
                                     <action selector="deleteAll:" destination="cIM-qw-O5k" eventType="touchUpInside" id="RpE-b6-oq7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRX-Zn-MJ3">
-                                <rect key="frame" x="184" y="622" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="addModel:" destination="cIM-qw-O5k" eventType="touchUpInside" id="PtI-m5-lcp"/>
-                                </connections>
-                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nvK-ds-Dtn">
+                                <rect key="frame" x="20" y="205" width="374" height="568"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="exp-zE-Ooq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="RVs-Wg-1bL" secondAttribute="trailing" constant="20" id="Bzg-yC-pWS"/>
+                            <constraint firstItem="8gl-mu-Hxo" firstAttribute="top" secondItem="RVs-Wg-1bL" secondAttribute="bottom" constant="22" id="HJz-Ik-mfu"/>
+                            <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="hRX-Zn-MJ3" secondAttribute="trailing" constant="23" id="Hxv-Tx-a6J"/>
+                            <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="8gl-mu-Hxo" secondAttribute="trailing" constant="20" id="Kmz-fG-Wbd"/>
+                            <constraint firstItem="bZM-KE-leu" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="OK5-yg-rYr"/>
+                            <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="nvK-ds-Dtn" secondAttribute="trailing" constant="20" id="Rjz-V7-Hhr"/>
+                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="VKa-ag-j4c"/>
+                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="centerX" secondItem="pgu-jT-zsy" secondAttribute="centerX" id="aKp-wd-AW8"/>
+                            <constraint firstItem="hRX-Zn-MJ3" firstAttribute="top" secondItem="8gl-mu-Hxo" secondAttribute="bottom" constant="3" id="bS5-AS-1N8"/>
+                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="top" secondItem="hRX-Zn-MJ3" secondAttribute="bottom" constant="5" id="eUj-cZ-wUh"/>
+                            <constraint firstItem="RVs-Wg-1bL" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="j5K-Py-PSz"/>
+                            <constraint firstItem="RVs-Wg-1bL" firstAttribute="top" secondItem="pgu-jT-zsy" secondAttribute="topMargin" constant="15" id="m7N-s4-WUW"/>
+                            <constraint firstItem="bZM-KE-leu" firstAttribute="top" secondItem="RVs-Wg-1bL" secondAttribute="bottom" constant="-5" id="o0Y-q7-4JH"/>
+                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="bottom" secondItem="exp-zE-Ooq" secondAttribute="bottom" constant="-40" id="oMk-Zj-cE9"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="VlR-oi-fgN"/>
+                    <tabBarItem key="tabBarItem" title="Write" image="square.and.pencil" catalog="system" id="VlR-oi-fgN"/>
                     <connections>
                         <outlet property="dateLabel" destination="bZM-KE-leu" id="nE1-ND-9wV"/>
                         <outlet property="deleteAllButton" destination="0R2-EQ-qEq" id="uhG-Ot-RP5"/>
@@ -128,11 +151,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

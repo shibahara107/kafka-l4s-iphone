@@ -10,7 +10,7 @@ import Realm
 import RealmSwift
 import FSCalendar
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance  {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
     let calendarView = FSCalendar(frame: CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: 500))
     
@@ -18,7 +18,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let dateDifferenceLimit: Int = 3
     
-    @IBOutlet var entryTextView: UITextView!
+    let entryTextView = UITextView(frame: CGRect(x: 20, y: 550, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - 550))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendarView.scrollDirection = .vertical
         
         view.addSubview(calendarView)
+        
+        entryTextView.font = UIFont.systemFont(ofSize: 15)
+        
+        view.addSubview(entryTextView)
     }
     
     override func viewWillAppear(_ animated: Bool) {

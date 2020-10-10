@@ -17,6 +17,11 @@
 		D168AF33252AB0BC005CD11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D168AF31252AB0BC005CD11F /* LaunchScreen.storyboard */; };
 		D168AF3E252AB0BC005CD11F /* OriginalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168AF3D252AB0BC005CD11F /* OriginalAppTests.swift */; };
 		D168AF49252AB0BC005CD11F /* OriginalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168AF48252AB0BC005CD11F /* OriginalAppUITests.swift */; };
+		D1B1154225322E8D001B37C6 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1B1151325322E86001B37C6 /* SF-Pro-Text-Medium.otf */; };
+		D1B1154825322E8D001B37C6 /* SF-Pro-Text-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1B1151925322E87001B37C6 /* SF-Pro-Text-Thin.otf */; };
+		D1B1156025322E8D001B37C6 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1B1153125322E8B001B37C6 /* SF-Pro-Text-Semibold.otf */; };
+		D1B1156525322E8D001B37C6 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1B1153625322E8C001B37C6 /* SF-Pro-Text-Regular.otf */; };
+		D1B1156A25322E8D001B37C6 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D1B1153B25322E8D001B37C6 /* SF-Pro.ttf */; };
 		D1CDFB59252ABE4900B24A72 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CDFB58252ABE4900B24A72 /* WriteViewController.swift */; };
 		D1CDFB5E252ABE5400B24A72 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CDFB5D252ABE5400B24A72 /* CalendarViewController.swift */; };
 		D1CDFB63252AC1B300B24A72 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CDFB62252AC1B300B24A72 /* Model.swift */; };
@@ -60,6 +65,11 @@
 		D168AF44252AB0BC005CD11F /* OriginalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OriginalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D168AF48252AB0BC005CD11F /* OriginalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalAppUITests.swift; sourceTree = "<group>"; };
 		D168AF4A252AB0BC005CD11F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1B1151325322E86001B37C6 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		D1B1151925322E87001B37C6 /* SF-Pro-Text-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Thin.otf"; sourceTree = "<group>"; };
+		D1B1153125322E8B001B37C6 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
+		D1B1153625322E8C001B37C6 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		D1B1153B25322E8D001B37C6 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro.ttf"; sourceTree = "<group>"; };
 		D1CDFB58252ABE4900B24A72 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		D1CDFB5D252ABE5400B24A72 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		D1CDFB62252AC1B300B24A72 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -155,6 +165,7 @@
 				D1CDFB58252ABE4900B24A72 /* WriteViewController.swift */,
 				D1CDFB5D252ABE5400B24A72 /* CalendarViewController.swift */,
 				D1CDFB62252AC1B300B24A72 /* Model.swift */,
+				D1B1150D25322E41001B37C6 /* Fonts */,
 			);
 			path = OriginalApp;
 			sourceTree = "<group>";
@@ -175,6 +186,18 @@
 				D168AF4A252AB0BC005CD11F /* Info.plist */,
 			);
 			path = OriginalAppUITests;
+			sourceTree = "<group>";
+		};
+		D1B1150D25322E41001B37C6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D1B1151325322E86001B37C6 /* SF-Pro-Text-Medium.otf */,
+				D1B1153625322E8C001B37C6 /* SF-Pro-Text-Regular.otf */,
+				D1B1153125322E8B001B37C6 /* SF-Pro-Text-Semibold.otf */,
+				D1B1151925322E87001B37C6 /* SF-Pro-Text-Thin.otf */,
+				D1B1153B25322E8D001B37C6 /* SF-Pro.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,8 +309,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D168AF33252AB0BC005CD11F /* LaunchScreen.storyboard in Resources */,
+				D1B1156A25322E8D001B37C6 /* SF-Pro.ttf in Resources */,
+				D1B1156525322E8D001B37C6 /* SF-Pro-Text-Regular.otf in Resources */,
 				D168AF30252AB0BC005CD11F /* Assets.xcassets in Resources */,
 				D168AF2E252AB0B9005CD11F /* Main.storyboard in Resources */,
+				D1B1154825322E8D001B37C6 /* SF-Pro-Text-Thin.otf in Resources */,
+				D1B1154225322E8D001B37C6 /* SF-Pro-Text-Medium.otf in Resources */,
+				D1B1156025322E8D001B37C6 /* SF-Pro-Text-Semibold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
