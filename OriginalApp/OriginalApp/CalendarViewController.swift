@@ -16,7 +16,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let dateFormatter = DateFormatter()
     
-    let dateDifferenceLimit: Int = 0
+    let dateDifferenceLimit: Int = 3
     
     @IBOutlet var entryTextView: UITextView!
     
@@ -50,7 +50,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         
         print("End of All Saved Entries")
-        
+                
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -85,6 +85,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     
                 } else {
                     print(" >No Accessible Entry Found")
+                    
+                    entryTextView.text = "You can access this entry in \(dateDifferenceLimit - dateDifference.day!) days"
                 }
                 
             } else {

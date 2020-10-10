@@ -26,7 +26,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     let dateFormatter = DateFormatter()
     
     @IBOutlet var deleteAllButton: UIButton!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -43,35 +43,79 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         dateFormatter.dateFormat = "yyyyMMdd"
         
         writeView.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        let realm = try! Realm()
+        
+        let currentDate: String = dateFormatter.string(from: date)
+        
+        let filterResult = realm.objects(Model.self).filter("date == '\(currentDate)'").isEmpty
+        
+        if filterResult == true {
+            writeView.text = ""
+            saveButton.setTitle("Save", for: .normal)
+            writeView.isEditable = true
+            writeView.isSelectable = true
+            writeView.textColor = UIColor.black
+        }
+        
     }
     
     @IBAction func addModel(_ sender: Any) {
         
-        if writeView.text.isEmpty {
+        if writeView.isEditable == false {
             
-            let emptyAlert: UIAlertController = UIAlertController(title: "No Text", message: "Please write text to save", preferredStyle: .alert)
-            emptyAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in print("Save Cancelled")}))
-            present(emptyAlert, animated: true, completion: nil)
+            saveButton.setTitle("Save", for: .normal)
+            writeView.isEditable = true
+            writeView.isSelectable = true
+            writeView.textColor = UIColor.black
             
         } else {
             
-            let instanceModel: Model = Model()
-            
-            instanceModel.date = dateFormatter.string(from: date)
-            instanceModel.text = self.writeView.text
-            
-            let realmInstance = try! Realm()
-            
-            try! realmInstance.write {
-                realmInstance.add(instanceModel)
+            if writeView.text.isEmpty {
+                
+                let emptyAlert: UIAlertController = UIAlertController(title: "No Text", message: "Please write text to save", preferredStyle: .alert)
+                emptyAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in print("Save Cancelled")}))
+                present(emptyAlert, animated: true, completion: nil)
+                
+            } else {
+                
+                let instanceModel: Model = Model()
+                
+                instanceModel.date = dateFormatter.string(from: date)
+                instanceModel.text = self.writeView.text
+                
+                let currentDate: String = dateFormatter.string(from: date)
+                                
+                let realm = try! Realm()
+                
+                let filterResult = realm.objects(Model.self).filter("date == '\(currentDate)'").isEmpty
+                let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
+                                
+                if filterResult == false {
+                    
+                    try! realm.write {
+                        realm.delete(filterObject)
+                    }
+                    
+                }
+                                
+                try! realm.write {
+                    realm.add(instanceModel)
+                }
+                
+                saveButton.setTitle("Edit", for: .normal)
+                writeView.isEditable = false
+                writeView.isSelectable = false
+                writeView.textColor = UIColor.gray
+                
+                print("Saved Entry")
+                
             }
-            
-            print("Saved Entry")
             
         }
         
