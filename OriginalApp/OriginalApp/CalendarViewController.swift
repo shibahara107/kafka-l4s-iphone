@@ -16,6 +16,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let dateFormatter = DateFormatter()
     
+    let dateDifferenceLimit: Int = 0
+    
+    @IBOutlet var entryTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,6 +37,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         print("CalendarView")
         
+        entryTextView.text = ""
+        
         let realmInstance = try! Realm()
         let instanceModel = realmInstance.objects(Model.self)
         
@@ -48,7 +54,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-
+        
+        entryTextView.text = ""
+        
         let selectedDate = Calendar(identifier: .gregorian)
         let selectedYear = selectedDate.component(.year, from: date)
         let selectedMonth = selectedDate.component(.month, from: date)
@@ -59,10 +67,26 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         let realmInstance = try! Realm()
         let instanceModel = realmInstance.objects(Model.self)
         
+        let currentDate = Date()
+        
         for instanceData in instanceModel {
             
+            let createdDate = dateFormatter.date(from: String(instanceData.date!))
+            
+            let dateDifference = Calendar.current.dateComponents([.day], from: currentDate, to: createdDate!)
+                        
             if instanceData.date == selectedDateString {
                 print("Selected Date: \(selectedDateString), Found Entry")
+                
+                if dateDifference.day! >= dateDifferenceLimit {
+                    print(" >Found Accessible Entry")
+                    
+                    entryTextView.text = instanceData.text
+                    
+                } else {
+                    print(" >No Accessible Entry Found")
+                }
+                
             } else {
                 print("Selected Date: \(selectedDateString), No Entry Found")
             }
@@ -89,7 +113,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         
         return 0
-
+        
     }
     
     

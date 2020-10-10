@@ -47,6 +47,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     @IBAction func addModel(_ sender: Any) {
