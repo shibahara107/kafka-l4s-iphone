@@ -39,6 +39,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         entryTextView.text = ""
         
+        calendarView.reloadData()
+        
         let realmInstance = try! Realm()
         let instanceModel = realmInstance.objects(Model.self)
         
@@ -115,7 +117,6 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         }
         
         return 0
-        
     }
     
     
