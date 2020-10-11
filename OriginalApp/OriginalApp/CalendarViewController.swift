@@ -12,13 +12,15 @@ import FSCalendar
 
 class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
     
-    let calendarView = FSCalendar(frame: CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: 500))
+    let calendarView = FSCalendar(frame: CGRect(x: 0, y: 40, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.45))
     
     let dateFormatter = DateFormatter()
     
-    let dateDifferenceLimit: Int = 3
+    let dateDifferenceLimit: Int = 0
     
-    let entryTextView = UITextView(frame: CGRect(x: 20, y: 550, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.height - 550))
+    let selectedDateLabel = UILabel(frame: CGRect(x: 20, y: UIScreen.main.bounds.height * 0.5, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.05))
+    
+    let entryTextView = UITextView(frame: CGRect(x: 20, y: UIScreen.main.bounds.height * 0.55, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.5))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         view.addSubview(calendarView)
         
         entryTextView.font = UIFont.systemFont(ofSize: 15)
-        
         view.addSubview(entryTextView)
+        
+        selectedDateLabel.font = UIFont(name: "SF Pro Regular", size: 40)
+        view.addSubview(selectedDateLabel)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,14 +67,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         entryTextView.text = ""
-        
+        selectedDateLabel.text = ""
+                
         let selectedDate = Calendar(identifier: .gregorian)
         let selectedYear = selectedDate.component(.year, from: date)
         let selectedMonth = selectedDate.component(.month, from: date)
         let selectedDay = selectedDate.component(.day, from: date)
         
         let selectedDateString: String = "\(selectedYear)\(selectedMonth)\(selectedDay)"
-        
+                
         let realmInstance = try! Realm()
         let instanceModel = realmInstance.objects(Model.self)
         
@@ -88,6 +94,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                     print(" >Found Accessible Entry")
                     
                     entryTextView.text = instanceData.text
+                    selectedDateLabel.text = "\(selectedDay) \(Calendar.current.monthSymbols[selectedMonth - 1])"
                     
                 } else {
                     print(" >No Accessible Entry Found")

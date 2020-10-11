@@ -83,14 +83,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0R2-EQ-qEq">
-                                <rect key="frame" x="328" y="64" width="66" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Delete All"/>
-                                <connections>
-                                    <action selector="deleteAll:" destination="cIM-qw-O5k" eventType="touchUpInside" id="RpE-b6-oq7"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nvK-ds-Dtn">
                                 <rect key="frame" x="20" y="205" width="374" height="568"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -120,7 +112,6 @@
                     <tabBarItem key="tabBarItem" title="Write" image="square.and.pencil" catalog="system" id="VlR-oi-fgN"/>
                     <connections>
                         <outlet property="dateLabel" destination="bZM-KE-leu" id="nE1-ND-9wV"/>
-                        <outlet property="deleteAllButton" destination="0R2-EQ-qEq" id="uhG-Ot-RP5"/>
                         <outlet property="monthLabel" destination="RVs-Wg-1bL" id="g8h-pQ-1vM"/>
                         <outlet property="saveButton" destination="hRX-Zn-MJ3" id="ByI-47-KWP"/>
                         <outlet property="writeView" destination="nvK-ds-Dtn" id="dQo-ta-N3y"/>
