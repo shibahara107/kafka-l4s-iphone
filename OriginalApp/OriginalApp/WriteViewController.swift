@@ -16,7 +16,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var yearLabel: UILabel!
     
     @IBOutlet var writeView: UITextView!
-    
+        
     @IBOutlet var saveButton: UIButton!
     
     let date: Date = Date()
@@ -43,6 +43,15 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         dateFormatter.dateFormat = "yyyyMMdd"
         
         writeView.delegate = self
+        
+        let toolBar = UIToolbar(frame: CGRect(origin: .zero, size: .init(width: UIScreen.main.bounds.width, height: 45)))
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        
+        toolBar.setItems([flexSpace, doneButton], animated: false)
+        
+        writeView.inputAccessoryView = toolBar
         
     }
     
@@ -131,6 +140,10 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         }
         
         print("Deleted All Data")
+    }
+    
+    @objc func doneButtonAction() {
+        self.view.endEditing(true)
     }
     
     
