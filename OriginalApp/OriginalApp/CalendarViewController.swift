@@ -34,6 +34,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         view.addSubview(calendarView)
         
         entryTextView.font = UIFont.systemFont(ofSize: 15)
+        entryTextView.isEditable = false
+        entryTextView.isSelectable = false
+        
         view.addSubview(entryTextView)
         
         selectedDateLabel.font = UIFont(name: "SF Pro Regular", size: 40)

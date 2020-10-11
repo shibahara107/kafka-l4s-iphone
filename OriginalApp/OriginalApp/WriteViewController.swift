@@ -31,15 +31,6 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        dateLabelFormatter.dateFormat = "dd"
-        dateLabel.text = dateLabelFormatter.string(from: date)
-        
-        monthLabelFormatter.dateFormat = "MMMM"
-        monthLabel.text = monthLabelFormatter.string(from: date)
-        
-        yearLabelFormatter.dateFormat = "yyyy"
-        yearLabel.text = yearLabelFormatter.string(from: date)
-        
         dateFormatter.dateFormat = "yyyyMMdd"
         
         writeView.delegate = self
@@ -53,10 +44,21 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         
         writeView.inputAccessoryView = toolBar
         
+        writeView.textColor = UIColor.label
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        dateLabelFormatter.dateFormat = "dd"
+        dateLabel.text = dateLabelFormatter.string(from: date)
+        
+        monthLabelFormatter.dateFormat = "MMMM"
+        monthLabel.text = monthLabelFormatter.string(from: date)
+        
+        yearLabelFormatter.dateFormat = "yyyy"
+        yearLabel.text = yearLabelFormatter.string(from: date)
         
         let realm = try! Realm()
         
@@ -65,11 +67,19 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         let filterResult = realm.objects(Model.self).filter("date == '\(currentDate)'").isEmpty
         
         if filterResult == true {
+            
             writeView.text = ""
             saveButton.setTitle("Save", for: .normal)
             writeView.isEditable = true
             writeView.isSelectable = true
             writeView.textColor = UIColor.black
+            
+        } else {
+            
+//            let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
+//            let savedText: String = String(filterObject.value(forKey: "text")!)
+//            writeView.text = savedText
+            
         }
         
     }
@@ -109,6 +119,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
                     
                     try! realm.write {
                         realm.delete(filterObject)
+                        print(filterObject.value(forKey: "text")!)
                     }
                     
                 }
