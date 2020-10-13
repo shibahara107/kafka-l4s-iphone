@@ -16,7 +16,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var yearLabel: UILabel!
     
     @IBOutlet var writeView: UITextView!
-        
+    
     @IBOutlet var saveButton: UIButton!
     
     let date: Date = Date()
@@ -26,7 +26,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     let dateFormatter = DateFormatter()
     
     @IBOutlet var deleteAllButton: UIButton!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,6 +45,30 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         writeView.inputAccessoryView = toolBar
         
         writeView.textColor = UIColor.label
+        
+        let realm = try! Realm()
+        let object = realm.objects(Model.self)
+        
+        let currentDate = Date()
+        
+        print("Today is:", currentDate)
+        
+        for instanceData in object {
+            
+            let createdDate = dateFormatter.date(from: String(instanceData.date!))
+            
+            print(createdDate)
+            
+            if createdDate == currentDate {
+                
+                print("Already made an entry today")
+                writeView.text = instanceData.text
+                
+            } else {
+                print("No entry made today")
+                
+            }
+        }
         
     }
     
@@ -68,17 +92,17 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         
         if filterResult == true {
             
-            writeView.text = ""
+            writeView.text = "Keep track."
+            writeView.textColor = UIColor.lightGray
             saveButton.setTitle("Save", for: .normal)
             writeView.isEditable = true
             writeView.isSelectable = true
-            writeView.textColor = UIColor.black
             
         } else {
             
-//            let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
-//            let savedText: String = String(filterObject.value(forKey: "text")!)
-//            writeView.text = savedText
+            //            let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
+            //            let savedText: String = String(filterObject.value(forKey: "text")!)
+            //            writeView.text = savedText
             
         }
         
@@ -109,12 +133,12 @@ class WriteViewController: UIViewController, UITextViewDelegate {
                 instanceModel.text = self.writeView.text
                 
                 let currentDate: String = dateFormatter.string(from: date)
-                                
+                
                 let realm = try! Realm()
                 
                 let filterResult = realm.objects(Model.self).filter("date == '\(currentDate)'").isEmpty
                 let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
-                                
+                
                 if filterResult == false {
                     
                     try! realm.write {
@@ -123,7 +147,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
                     }
                     
                 }
-                                
+                
                 try! realm.write {
                     realm.add(instanceModel)
                 }
@@ -155,6 +179,22 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     
     @objc func doneButtonAction() {
         self.view.endEditing(true)
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if writeView.textColor == UIColor.lightGray {
+            writeView.text = ""
+            writeView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        
+        if writeView.text.isEmpty {
+            writeView.text = "Keep track."
+            writeView.textColor = UIColor.lightGray
+        }
     }
     
     

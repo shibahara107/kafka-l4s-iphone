@@ -36,6 +36,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         entryTextView.font = UIFont.systemFont(ofSize: 15)
         entryTextView.isEditable = false
         entryTextView.isSelectable = false
+        entryTextView.textColor = UIColor.label
         
         view.addSubview(entryTextView)
         
