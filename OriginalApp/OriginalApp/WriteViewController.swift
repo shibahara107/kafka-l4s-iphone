@@ -100,6 +100,21 @@ class WriteViewController: UIViewController, UITextViewDelegate {
             
         } else {
             
+            let instanceModel = realm.objects(Model.self)
+            
+            for instanceData in instanceModel {
+                
+                if instanceData.date == currentDate {
+                    
+                    writeView.text = instanceData.text
+                    
+                    saveButton.setTitle("Edit", for: .normal)
+                    writeView.isEditable = false
+                    writeView.isSelectable = false
+                    writeView.textColor = UIColor.gray
+                }
+            }
+            
             //            let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
             //            let savedText: String = String(filterObject.value(forKey: "text")!)
             //            writeView.text = savedText

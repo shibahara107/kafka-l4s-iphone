@@ -94,7 +94,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             if instanceData.date == selectedDateString {
                 print("Selected Date: \(selectedDateString), Found Entry")
                 
-                if dateDifference.day! >= dateDifferenceLimit {
+                if abs(dateDifference.day!) >= dateDifferenceLimit {
                     print(" >Found Accessible Entry")
                     
                     entryTextView.text = instanceData.text
@@ -108,6 +108,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                 
             } else {
                 print("Selected Date: \(selectedDateString), No Entry Found")
+                
+                entryTextView.text = "No Entry written on this day."
             }
         }
         
