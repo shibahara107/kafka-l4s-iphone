@@ -56,9 +56,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         for instanceData in object {
             
             let createdDate = dateFormatter.date(from: String(instanceData.date!))
-            
-            print(createdDate)
-            
+                        
             if createdDate == currentDate {
                 
                 print("Already made an entry today")
@@ -111,14 +109,10 @@ class WriteViewController: UIViewController, UITextViewDelegate {
                     saveButton.setTitle("Edit", for: .normal)
                     writeView.isEditable = false
                     writeView.isSelectable = false
-                    writeView.textColor = UIColor.gray
+                    writeView.textColor = UIColor.lightGray
                 }
             }
-            
-            //            let filterObject = realm.objects(Model.self).filter("date == '\(currentDate)'")
-            //            let savedText: String = String(filterObject.value(forKey: "text")!)
-            //            writeView.text = savedText
-            
+  
         }
         
     }
@@ -130,7 +124,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
             saveButton.setTitle("Save", for: .normal)
             writeView.isEditable = true
             writeView.isSelectable = true
-            writeView.textColor = UIColor.black
+            writeView.textColor = UIColor.label
             
         } else {
             
@@ -158,7 +152,6 @@ class WriteViewController: UIViewController, UITextViewDelegate {
                     
                     try! realm.write {
                         realm.delete(filterObject)
-                        print(filterObject.value(forKey: "text")!)
                     }
                     
                 }
@@ -200,7 +193,7 @@ class WriteViewController: UIViewController, UITextViewDelegate {
         
         if writeView.textColor == UIColor.lightGray {
             writeView.text = ""
-            writeView.textColor = UIColor.black
+            writeView.textColor = UIColor.label
         }
     }
     
