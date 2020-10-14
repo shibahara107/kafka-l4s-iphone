@@ -9,7 +9,7 @@ import UIKit
 import Realm
 import RealmSwift
 
-class WriteViewController: UIViewController, UITextViewDelegate {
+class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var monthLabel: UILabel!
@@ -27,10 +27,16 @@ class WriteViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet var deleteAllButton: UIButton!
     
+    @IBOutlet var pickerButton: UIButton!
+    
+    let pickerView = UIPickerView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.3, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3))
+    
+    let pickerViewChoices: [Int] = [1, 3, 7, 30, 180, 365, 1095, 1825]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+                
         dateFormatter.dateFormat = "yyyyMMdd"
         
         writeView.delegate = self
@@ -203,6 +209,32 @@ class WriteViewController: UIViewController, UITextViewDelegate {
             writeView.text = "Keep track."
             writeView.textColor = UIColor.lightGray
         }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+     
+    // UIPickerViewの行数、要素の全数
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerViewChoices.count
+    }
+     
+    // UIPickerViewに表示する配列
+    private func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> Int? {
+        
+        return pickerViewChoices[row]
+    }
+     
+    // UIPickerViewのRowが選択された時の挙動
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        print(pickerViewChoices[row])
+    }
+    
+    @IBAction func showPicker(_ sender: Any) {
+        
+        view.addSubview(pickerView)
     }
     
     

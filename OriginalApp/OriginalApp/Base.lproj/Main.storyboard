@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
         <array key="SF-Pro-Text-Semibold.otf">
             <string>SFProText-Semibold</string>
         </array>
@@ -43,7 +46,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZM-KE-leu">
-                                <rect key="frame" x="20" y="104" width="106.5" height="57.5"/>
+                                <rect key="frame" x="20" y="104" width="103.5" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bZM-KE-leu" secondAttribute="height" multiplier="37:20" id="1mH-Bp-sYP"/>
                                 </constraints>
@@ -61,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hRX-Zn-MJ3">
-                                <rect key="frame" x="339" y="161" width="52" height="39"/>
+                                <rect key="frame" x="339" y="160" width="52" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Uk7-DR-1F3"/>
                                     <constraint firstAttribute="width" constant="52" id="sjw-4E-Tq5"/>
@@ -75,7 +78,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gl-mu-Hxo">
-                                <rect key="frame" x="337" y="131" width="57" height="27"/>
+                                <rect key="frame" x="339" y="131" width="55" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="8gl-mu-Hxo" secondAttribute="height" multiplier="19:9" id="Jy2-CC-Jai"/>
                                 </constraints>
@@ -84,25 +87,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nvK-ds-Dtn">
-                                <rect key="frame" x="20" y="205" width="374" height="568"/>
+                                <rect key="frame" x="20" y="207" width="374" height="566"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNO-zC-O5a">
+                                <rect key="frame" x="20" y="160" width="156" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Uhh-dR-kyd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
+                                <state key="normal" title="Access in 1 week">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="cIM-qw-O5k" eventType="touchUpInside" id="91b-bq-QZa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="exp-zE-Ooq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fNO-zC-O5a" firstAttribute="top" secondItem="8gl-mu-Hxo" secondAttribute="bottom" constant="3" id="A13-cb-Mxl"/>
                             <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="RVs-Wg-1bL" secondAttribute="trailing" constant="20" id="Bzg-yC-pWS"/>
                             <constraint firstItem="8gl-mu-Hxo" firstAttribute="top" secondItem="RVs-Wg-1bL" secondAttribute="bottom" constant="22" id="HJz-Ik-mfu"/>
                             <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="hRX-Zn-MJ3" secondAttribute="trailing" constant="23" id="Hxv-Tx-a6J"/>
+                            <constraint firstItem="fNO-zC-O5a" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="Jmm-7e-OZc"/>
                             <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="8gl-mu-Hxo" secondAttribute="trailing" constant="20" id="Kmz-fG-Wbd"/>
                             <constraint firstItem="bZM-KE-leu" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="OK5-yg-rYr"/>
                             <constraint firstItem="exp-zE-Ooq" firstAttribute="trailing" secondItem="nvK-ds-Dtn" secondAttribute="trailing" constant="20" id="Rjz-V7-Hhr"/>
                             <constraint firstItem="nvK-ds-Dtn" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="VKa-ag-j4c"/>
                             <constraint firstItem="nvK-ds-Dtn" firstAttribute="centerX" secondItem="pgu-jT-zsy" secondAttribute="centerX" id="aKp-wd-AW8"/>
                             <constraint firstItem="hRX-Zn-MJ3" firstAttribute="top" secondItem="8gl-mu-Hxo" secondAttribute="bottom" constant="3" id="bS5-AS-1N8"/>
-                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="top" secondItem="hRX-Zn-MJ3" secondAttribute="bottom" constant="5" id="eUj-cZ-wUh"/>
+                            <constraint firstItem="nvK-ds-Dtn" firstAttribute="top" secondItem="hRX-Zn-MJ3" secondAttribute="bottom" constant="8" id="eUj-cZ-wUh"/>
                             <constraint firstItem="RVs-Wg-1bL" firstAttribute="leading" secondItem="exp-zE-Ooq" secondAttribute="leading" constant="20" id="j5K-Py-PSz"/>
                             <constraint firstItem="RVs-Wg-1bL" firstAttribute="top" secondItem="pgu-jT-zsy" secondAttribute="topMargin" constant="15" id="m7N-s4-WUW"/>
                             <constraint firstItem="bZM-KE-leu" firstAttribute="top" secondItem="RVs-Wg-1bL" secondAttribute="bottom" constant="-5" id="o0Y-q7-4JH"/>
@@ -113,6 +131,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="bZM-KE-leu" id="nE1-ND-9wV"/>
                         <outlet property="monthLabel" destination="RVs-Wg-1bL" id="g8h-pQ-1vM"/>
+                        <outlet property="pickerButton" destination="fNO-zC-O5a" id="I3j-Zp-bxa"/>
                         <outlet property="saveButton" destination="hRX-Zn-MJ3" id="ByI-47-KWP"/>
                         <outlet property="writeView" destination="nvK-ds-Dtn" id="dQo-ta-N3y"/>
                         <outlet property="yearLabel" destination="8gl-mu-Hxo" id="nsJ-4c-CXZ"/>
