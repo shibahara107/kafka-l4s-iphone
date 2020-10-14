@@ -29,14 +29,14 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
     
     @IBOutlet var pickerButton: UIButton!
     
-    let pickerView = UIPickerView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.3, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3))
+    let pickerView = UIPickerView(frame: CGRect(x: 20, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.3 - 100, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.3))
     
-    let pickerViewChoices: [Int] = [1, 3, 7, 30, 180, 365, 1095, 1825]
+    let pickerViewChoices: [[String]] = [["1 day", "1"], ["3 days", "3"], ["7 days", "7"], ["30 days", "30"], ["180 days", "180"], ["1 year", "365"], ["3 years", "1095"], ["5 years", "1825"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-                
+        
         dateFormatter.dateFormat = "yyyyMMdd"
         
         writeView.delegate = self
@@ -62,7 +62,7 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
         for instanceData in object {
             
             let createdDate = dateFormatter.date(from: String(instanceData.date!))
-                        
+            
             if createdDate == currentDate {
                 
                 print("Already made an entry today")
@@ -73,6 +73,20 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
                 
             }
         }
+        
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        
+        pickerView.backgroundColor = UIColor.tertiarySystemFill
+        pickerView.layer.cornerRadius = 20
+        
+        let pickerViewToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: pickerView.frame.size.width, height: 45))
+        
+        let hidePickerViewButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hidePickerView))
+        
+        pickerViewToolBar.setItems([flexSpace, hidePickerViewButton], animated: false)
+                
+        pickerView.addSubview(pickerViewToolBar)
         
     }
     
@@ -118,7 +132,7 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
                     writeView.textColor = UIColor.lightGray
                 }
             }
-  
+            
         }
         
     }
@@ -214,27 +228,31 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-     
+    
     // UIPickerViewの行数、要素の全数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickerViewChoices.count
     }
-     
+    
     // UIPickerViewに表示する配列
-    private func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> Int? {
-        
-        return pickerViewChoices[row]
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerViewChoices[row][0]
     }
-     
+    
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        print(pickerViewChoices[row])
+        pickerButton.setTitle("Access in \(pickerViewChoices[row][0])", for: .normal)
     }
     
     @IBAction func showPicker(_ sender: Any) {
         
-        view.addSubview(pickerView)
+        UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: { self.view.addSubview(self.pickerView) }, completion: nil)
+        
+    }
+    
+    @objc func hidePickerView() {
+        print("Yoshinori")
+        pickerView.removeFromSuperview()
     }
     
     

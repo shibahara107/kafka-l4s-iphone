@@ -93,12 +93,12 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fNO-zC-O5a">
-                                <rect key="frame" x="20" y="160" width="156" height="39"/>
+                                <rect key="frame" x="20" y="160" width="142" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Uhh-dR-kyd"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
-                                <state key="normal" title="Access in 1 week">
+                                <state key="normal" title="Access in 1 day">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
