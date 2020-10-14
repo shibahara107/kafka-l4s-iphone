@@ -16,7 +16,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     let dateFormatter = DateFormatter()
     
-    let dateDifferenceLimit: Int = 0
+    var dateDifferenceLimit: Int = 1
     
     let selectedDateLabel = UILabel(frame: CGRect(x: 20, y: UIScreen.main.bounds.height * 0.5, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.05))
     
@@ -61,11 +61,11 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         for instanceData in instanceModel {
             
-            print(String(instanceData.date!), String(instanceData.text!))
+            print(String(instanceData.date!), String(instanceData.text!), String(instanceData.accessDate!))
         }
         
         print("End of All Saved Entries")
-                
+                        
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -93,6 +93,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
                         
             if instanceData.date == selectedDateString {
                 print("Selected Date: \(selectedDateString), Found Entry")
+                
+                dateDifferenceLimit = Int(instanceData.accessDate!) ?? 1
                 
                 if abs(dateDifference.day!) >= dateDifferenceLimit {
                     print(" >Found Accessible Entry")

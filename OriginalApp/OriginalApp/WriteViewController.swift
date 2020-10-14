@@ -29,9 +29,13 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
     
     @IBOutlet var pickerButton: UIButton!
     
-    let pickerView = UIPickerView(frame: CGRect(x: 20, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.3 - 100, width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.3))
+    let pickerView = UIPickerView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.3 - 100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3))
+    
+    let pickerViewToolBar = UIToolbar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - UIScreen.main.bounds.height * 0.5, width: UIScreen.main.bounds.width, height: 45))
     
     let pickerViewChoices: [[String]] = [["1 day", "1"], ["3 days", "3"], ["7 days", "7"], ["30 days", "30"], ["180 days", "180"], ["1 year", "365"], ["3 years", "1095"], ["5 years", "1825"]]
+    
+    var accessDate: String = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,20 +60,39 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
         let object = realm.objects(Model.self)
         
         let currentDate = Date()
+        let currentDateString = dateFormatter.string(from: currentDate)
         
-        print("Today is:", currentDate)
+        print("Today is:", currentDateString)
         
         for instanceData in object {
-            
-            let createdDate = dateFormatter.date(from: String(instanceData.date!))
-            
-            if createdDate == currentDate {
+                        
+            if instanceData.date == currentDateString {
                 
                 print("Already made an entry today")
                 writeView.text = instanceData.text
                 
+                if instanceData.accessDate == "1" {
+                    pickerButton.setTitle("Access in 1 day", for: .normal)
+                } else if instanceData.accessDate == "3" {
+                    pickerButton.setTitle("Access in 3 days", for: .normal)
+                } else if instanceData.accessDate == "7" {
+                    pickerButton.setTitle("Access in 7 days", for: .normal)
+                } else if instanceData.accessDate == "30" {
+                    pickerButton.setTitle("Access in 30 days", for: .normal)
+                } else if instanceData.accessDate == "180" {
+                    pickerButton.setTitle("Access in 180 days", for: .normal)
+                } else if instanceData.accessDate == "365" {
+                    pickerButton.setTitle("Access in 1 year", for: .normal)
+                } else if instanceData.accessDate == "1095" {
+                    pickerButton.setTitle("Access in 3 years", for: .normal)
+                } else if instanceData.accessDate == "1825" {
+                    pickerButton.setTitle("Access in 5 years", for: .normal)
+                }
+                
             } else {
                 print("No entry made today")
+                
+                writeView.text = ""
                 
             }
         }
@@ -79,14 +102,12 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
         
         pickerView.backgroundColor = UIColor.tertiarySystemFill
         pickerView.layer.cornerRadius = 20
-        
-        let pickerViewToolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: pickerView.frame.size.width, height: 45))
-        
+                
         let hidePickerViewButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(hidePickerView))
         
         pickerViewToolBar.setItems([flexSpace, hidePickerViewButton], animated: false)
-                
-        pickerView.addSubview(pickerViewToolBar)
+        
+        pickerViewToolBar.layer.cornerRadius = 20
         
     }
     
@@ -116,6 +137,9 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
             writeView.isEditable = true
             writeView.isSelectable = true
             
+            pickerButton.isEnabled = true
+            pickerButton.setTitleColor(.black, for: .normal)
+            
         } else {
             
             let instanceModel = realm.objects(Model.self)
@@ -130,6 +154,10 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
                     writeView.isEditable = false
                     writeView.isSelectable = false
                     writeView.textColor = UIColor.lightGray
+                    
+                    pickerButton.isEnabled = false
+                    pickerButton.setTitleColor(.lightGray, for: .normal)
+
                 }
             }
             
@@ -146,6 +174,9 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
             writeView.isSelectable = true
             writeView.textColor = UIColor.label
             
+            pickerButton.isEnabled = true
+            pickerButton.setTitleColor(.label, for: .normal)
+            
         } else {
             
             if writeView.text.isEmpty {
@@ -160,6 +191,7 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
                 
                 instanceModel.date = dateFormatter.string(from: date)
                 instanceModel.text = self.writeView.text
+                instanceModel.accessDate = accessDate
                 
                 let currentDate: String = dateFormatter.string(from: date)
                 
@@ -183,7 +215,10 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
                 saveButton.setTitle("Edit", for: .normal)
                 writeView.isEditable = false
                 writeView.isSelectable = false
-                writeView.textColor = UIColor.gray
+                writeView.textColor = UIColor.lightGray
+                
+                pickerButton.isEnabled = false
+                pickerButton.setTitleColor(.lightGray, for: .normal)
                 
                 print("Saved Entry")
                 
@@ -241,18 +276,27 @@ class WriteViewController: UIViewController, UITextViewDelegate, UIPickerViewDel
     
     // UIPickerViewのRowが選択された時の挙動
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         pickerButton.setTitle("Access in \(pickerViewChoices[row][0])", for: .normal)
+        
+        accessDate = pickerViewChoices[row][1]
+        
     }
     
     @IBAction func showPicker(_ sender: Any) {
         
         UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: { self.view.addSubview(self.pickerView) }, completion: nil)
+        UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: { self.view.addSubview(self.pickerViewToolBar) }, completion: nil)
         
+        writeView.isEditable = false
+
     }
     
     @objc func hidePickerView() {
-        print("Yoshinori")
-        pickerView.removeFromSuperview()
+        
+        UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: { self.pickerView.removeFromSuperview() }, completion: nil)
+        UIView.transition(with: self.view, duration: 0.2, options: [.transitionCrossDissolve], animations: { self.pickerViewToolBar.removeFromSuperview() }, completion: nil)
+        
     }
     
     
